@@ -1,11 +1,7 @@
-from app.models import user_model
-
-from ..database import Base, engine
-
+from app.database import Base, engine
 
 class DbInitialize:
-
-    # Function to load the DB
     @staticmethod
     def create_tables():
+        from app.models import user_model  
         Base.metadata.create_all(bind=engine)

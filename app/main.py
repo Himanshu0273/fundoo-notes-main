@@ -12,7 +12,6 @@ from .models import user_model
 from .schemas import user_schema
 from .utils import hash
 
-app = FastAPI()
 
 
 # Runs the Load DB when the API Server starts
@@ -25,6 +24,7 @@ async def lifespan(app: FastAPI):
     # Shutdown logic
     print("App shutting down...")
 
+app = FastAPI(lifespan=lifespan)
 
 # Router Registration
 app.include_router(user.router)
