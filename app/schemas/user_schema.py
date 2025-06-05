@@ -8,27 +8,25 @@ from app.enums import GenderEnum
 
 class User(BaseModel):
     username: str
-    email: str 
+    email: str
     password: str
     dob: date
     gender: GenderEnum
-    
-    class Config():
+
+    class Config:
         from_attributes = True
-        
-    
-    
+
+
 class ShowUser(BaseModel):
     username: str
     email: str
     dob: date
     gender: GenderEnum
-    
-    
+
+
 class UpdateUser(BaseModel):
     username: Optional[str] = None
     email: Optional[str] = None
     password: Optional[str] = None
     dob: Optional[date] = None
     gender: Optional[GenderEnum] = None
-    

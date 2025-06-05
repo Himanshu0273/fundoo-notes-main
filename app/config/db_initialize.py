@@ -4,9 +4,8 @@ from ..database import Base, engine
 
 
 class DbInitialize:
-    
-    #Function to load the DB
+
+    # Function to load the DB
     @staticmethod
-    class create_tables():
+    def create_tables():
         Base.metadata.create_all(bind=engine)
-        

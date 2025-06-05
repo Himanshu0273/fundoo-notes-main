@@ -15,19 +15,19 @@ from .utils import hash
 app = FastAPI()
 
 
-#Runs the Load DB when the API Server starts
+# Runs the Load DB when the API Server starts
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup logic
     print("App starting up...")
     db_initialize.DbInitialize.create_tables()
-    yield 
+    yield
     # Shutdown logic
     print("App shutting down...")
 
 
-#Router Registration
+# Router Registration
 app.include_router(user.router)
 
 # if __name__=="__main__":
-    # Setting ka object banna ke port aur URL lena aur yahi pe server run karna
+# Setting ka object banna ke port aur URL lena aur yahi pe server run karna
