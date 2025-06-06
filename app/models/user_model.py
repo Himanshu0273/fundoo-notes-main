@@ -5,7 +5,7 @@ from sqlalchemy import Enum as SQLAlchemyEnum
 from sqlalchemy.orm import Mapped, mapped_column
 
 from ..database import Base
-from ..enums import GenderEnum
+from ..utils.enums import GenderEnum
 
 
 class User(Base):

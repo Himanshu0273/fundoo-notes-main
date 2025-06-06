@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models import user_model
 from app.schemas import user_schema
-from app.utils import hash
-
+from app.utils.hash import Hash
+from app.auth.oauth import get_current_user
 router = APIRouter(prefix="/user", tags=["Users"])
 
 
@@ -13,7 +13,7 @@ router = APIRouter(prefix="/user", tags=["Users"])
 @router.get(
     "/{id}", status_code=status.HTTP_200_OK, response_model=user_schema.ShowUser
 )
-def get_user(id: int, db: Session = Depends(get_db)):
+def get_user(id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     user = db.query(user_model.User).filter(user_model.User.id == id).first()
 
     if not user:
@@ -27,9 +27,9 @@ def get_user(id: int, db: Session = Depends(get_db)):
 @router.post(
     "/", status_code=status.HTTP_201_CREATED, response_model=user_schema.ShowUser
 )
-def create_user(request: user_schema.User, db: Session = Depends(get_db)):
+def create_user(request: user_schema.User, db: Session = Depends(get_db), create_user=Depends(get_current_user)):
     user_data = request.model_dump()
-    user_data["password"] = hash.Hash.get_password_hash(request.password)
+    user_data["password"] = Hash.get_password_hash(request.password)
     new_user = user_model.User(**user_data)
     db.add(new_user)
     db.commit()
@@ -40,8 +40,7 @@ def create_user(request: user_schema.User, db: Session = Depends(get_db)):
 # Update user details
 @router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
 def update_details(
-    id: int, request: user_schema.UpdateUser, db: Session = Depends(get_db)
-):
+    id: int, request: user_schema.UpdateUser, db: Session = Depends(get_db), create_user=Depends(get_current_user)):
     user = db.query(user_model.User).filter(user_model.User.id == id)
 
     if not user:
@@ -52,7 +51,7 @@ def update_details(
     update_data = request.model_dump(exclude_unset=True)
 
     if "password" in update_data:
-        update_data["password"] = hash.Hash.get_password_hash(update_data["password"])
+        update_data["password"] = Hash.get_password_hash(update_data["password"])
 
     user.update(update_data)
     db.commit()
@@ -61,7 +60,7 @@ def update_details(
 
 # Delete a user
 @router.delete("/{id}", status_code=status.HTTP_200_OK)
-def delete_user(id: int, db: Session = Depends(get_db)):
+def delete_user(id: int, db: Session = Depends(get_db), create_user=Depends(get_current_user)):
     user = db.query(user_model.User).filter(user_model.User.id == id)
     if not user.first():
         raise HTTPException(

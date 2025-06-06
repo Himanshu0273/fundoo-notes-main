@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI, status
 from sqlalchemy.orm import Session
 
-from app.routers import user
+from app.routers import user, auth
 
 from .config import db_initialize
 from app.config.logger_config import DBLogger
@@ -35,6 +35,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # Router Registration
+app.include_router(auth.router)
 app.include_router(user.router)
 
 # if __name__=="__main__":
