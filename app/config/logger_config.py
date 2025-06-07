@@ -1,6 +1,7 @@
 import os
-from loguru import logger
 from pathlib import Path
+
+from loguru import logger
 
 
 class DBLogger:

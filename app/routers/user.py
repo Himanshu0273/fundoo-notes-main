@@ -1,15 +1,19 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Header
+from fastapi import APIRouter, Depends, Header, HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.auth.dependencies import get_user_with_headers
 from app.database import get_db
 from app.models import user_model
 from app.schemas import user_schema
+from app.utils.exceptions import (EmailAlreadyExistsException,
+                                  UsernameAlreadyExistsException,
+                                  UserNotFoundException)
 from app.utils.hash import Hash
-from app.auth.dependencies import get_user_with_headers
+
 router = APIRouter(prefix="/user", tags=["Users"])
 
 
-# Get user according to id
+# Get user by id
 @router.get(
     "/{id}", status_code=status.HTTP_200_OK, response_model=user_schema.ShowUser
 )
@@ -17,9 +21,8 @@ def get_user(id: int, db: Session = Depends(get_db), current_user=Depends(get_us
     user = db.query(user_model.User).filter(user_model.User.id == id).first()
 
     if not user:
-        raise HTTPException(
-            status.HTTP_404_NOT_FOUND, detail=f"User with id {id} is not available."
-        )
+        raise UserNotFoundException(user_id=id)
+    
     return user
 
 
@@ -28,6 +31,15 @@ def get_user(id: int, db: Session = Depends(get_db), current_user=Depends(get_us
     "/", status_code=status.HTTP_201_CREATED, response_model=user_schema.ShowUser
 )
 def create_user(request: user_schema.User, db: Session = Depends(get_db), create_user=Depends(get_user_with_headers)):
+    
+    existing_email = db.query(user_model.User).filter(user_model.User.email == request.email).first()
+    if existing_email:
+        raise EmailAlreadyExistsException
+    
+    existing_username = db.query(user_model.User).filter(user_model.User.username == request.username).first()
+    if existing_username:
+        raise UsernameAlreadyExistsException
+    
     user_data = request.model_dump()
     user_data["password"] = Hash.get_password_hash(request.password)
     new_user = user_model.User.create(**user_data)
@@ -43,10 +55,8 @@ def update_details(
     id: int, request: user_schema.UpdateUser, db: Session = Depends(get_db), create_user=Depends(get_user_with_headers)):
     user = db.query(user_model.User).filter(user_model.User.id == id)
 
-    if not user:
-        raise HTTPException(
-            status.HTTP_404_NOT_FOUND, detail=f"User with id {id} is not available."
-        )
+    if not user.first():
+        raise UserNotFoundException(user_id=id)
 
     update_data = request.model_dump(exclude_unset=True)
 

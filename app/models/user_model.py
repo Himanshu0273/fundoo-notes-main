@@ -1,9 +1,10 @@
+import uuid
 from datetime import date, datetime
 
 from sqlalchemy import Date, DateTime
-from sqlalchemy import Enum as SQLAlchemyEnum, String, Integer
+from sqlalchemy import Enum as SQLAlchemyEnum
+from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
-import uuid
 
 from ..database import Base
 from ..utils.enums import GenderEnum

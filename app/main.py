@@ -4,10 +4,10 @@ from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI, status
 from sqlalchemy.orm import Session
 
-from app.routers import user, auth
+from app.config.logger_config import DBLogger
+from app.routers import auth, user
 
 from .config import db_initialize
-from app.config.logger_config import DBLogger
 from .database import get_db
 from .models import user_model
 from .schemas import user_schema
