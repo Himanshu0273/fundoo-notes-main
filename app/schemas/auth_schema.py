@@ -4,12 +4,15 @@ from typing import Optional
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+    algorithm: str = "HS256"
+    time_expire: int = 15
     
     
 class TokenData(BaseModel):
     user_id: Optional[int] = None
     email: Optional[EmailStr] = None
     username: Optional[str] = None
+    secret_key: str
     
 class TokenResponse(BaseModel):
     access_token: str
