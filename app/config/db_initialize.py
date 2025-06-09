@@ -1,5 +1,6 @@
 from app.database import Base, engine
 
+
 class DbInitialize:
     @staticmethod
     def create_tables():

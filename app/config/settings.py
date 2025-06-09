@@ -16,8 +16,11 @@ class DbSettings:
 
 
 # All settings related to fastapi
-class Settings:
-    pass
+class AppSettings:
+    APP_HOST = os.getenv("APP_HOST", "127.0.0.1")
+    APP_PORT = int(os.getenv("APP_PORT", 8000))
+    APP_RELOAD = os.getenv("APP_RELOAD", "False").lower() == "true"
 
 
 dbsettings = DbSettings()
+appsettings = AppSettings()
