@@ -11,6 +11,29 @@ from app.utils.exceptions import (EmailAlreadyExistsException,
 from app.utils.hash import Hash
 
 router = APIRouter(prefix="/user", tags=["Users"])
+router2 = APIRouter()
+
+# Add User
+@router2.post(
+    "/signup", status_code=status.HTTP_201_CREATED, response_model=user_schema.ShowUser,tags=['Sign-In']
+)
+def create_user(request: user_schema.User, db: Session = Depends(get_db)):
+    
+    existing_email = db.query(user_model.User).filter(user_model.User.email == request.email).first()
+    if existing_email:
+        raise EmailAlreadyExistsException(email=request.email)
+    
+    existing_username = db.query(user_model.User).filter(user_model.User.username == request.username).first()
+    if existing_username:
+        raise UsernameAlreadyExistsException(username=request.username)
+    
+    user_data = request.model_dump()
+    user_data["password"] = Hash.get_password_hash(request.password)
+    new_user = user_model.User.create(**user_data)
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
 
 
 # Get user by id
@@ -24,29 +47,6 @@ def get_user(id: int, db: Session = Depends(get_db), current_user=Depends(get_us
         raise UserNotFoundException(user_id=id)
     
     return user
-
-
-# Add user
-@router.post(
-    "/", status_code=status.HTTP_201_CREATED, response_model=user_schema.ShowUser
-)
-def create_user(request: user_schema.User, db: Session = Depends(get_db), create_user=Depends(get_user_with_headers)):
-    
-    existing_email = db.query(user_model.User).filter(user_model.User.email == request.email).first()
-    if existing_email:
-        raise EmailAlreadyExistsException
-    
-    existing_username = db.query(user_model.User).filter(user_model.User.username == request.username).first()
-    if existing_username:
-        raise UsernameAlreadyExistsException
-    
-    user_data = request.model_dump()
-    user_data["password"] = Hash.get_password_hash(request.password)
-    new_user = user_model.User.create(**user_data)
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    return new_user
 
 
 # Update user details

@@ -58,3 +58,11 @@ class TokenExpiredException(HTTPException):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token has expired"
         )
+        
+#Regex Validation
+class RegexValidationException(HTTPException):
+    def __init__(self, field_name: str, error_msg: str):
+        super().__init__(
+            status_code = status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=f"{field_name} validation error: {error_msg}"
+        )
