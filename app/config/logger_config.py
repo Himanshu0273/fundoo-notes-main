@@ -1,35 +1,32 @@
+import json
 import os
-from pathlib import Path
 
 from loguru import logger
 
 
-class DBLogger:
-    LOG_DIR = Path(__file__).resolve().parent.parent / "logs"
-    LOG_FILE = LOG_DIR / "db_log.log"
-    
-    
+class Logger:
     @staticmethod
-    def setup_logger():
-        if not DBLogger.LOG_DIR.exists():
-            DBLogger.LOG_DIR.mkdir(parents=True)
-            
+    def initialize_from_json(config_path="logger_format.json"):
         logger.remove()
         
-        logger.add(
-            DBLogger.LOG_FILE,
-            format=("{time:YYYY-MM-DD HH:mm:ss} | "
-                "{level:<8} | "
-                "{module:<15} | "
-                "{message}"),
-                
-            level='DEBUG',
-            rotation='1 MB',
-            compression='zip',
-            backtrace=True,
-            diagnose=True                
-        )
+        def db_filter(record):
+            return record.get("extra", {}).get("config", False)
         
-        logger.info("Logger initialized successfully!!!")
-        
+        def func_filter(record):
+            return record.get("extra", {}).get("func", False)
+
+        abs_path = os.path.join(os.path.dirname(__file__), config_path)
+        with open(abs_path, 'r') as f:
+            config_log = json.load(f)
+
+        for handler in config_log["handlers"]:
+            filter_name = handler.pop("filter", None)
+            filter_func = {"config": db_filter, "func": func_filter}.get(filter_name)
+            
+            logger.add(**handler, filter=filter_func)
+
+        logger.info("Logger initialized from JSON config.")
         return logger
+
+config_logger = Logger.initialize_from_json().bind(config=True)
+func_logger = Logger.initialize_from_json().bind(func=True)
