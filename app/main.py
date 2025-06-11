@@ -1,7 +1,9 @@
 import sys
-import uvicorn 
-from app.config.settings import appsettings
+
+import uvicorn
+
 from app.config.logger_config import Logger
+from app.config.settings import appsettings
 from app.utils.exceptions import RequiredEnvVarError
 
 if __name__ == "__main__":

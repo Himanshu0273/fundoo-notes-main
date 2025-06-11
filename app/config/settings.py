@@ -22,5 +22,18 @@ class AppSettings:
     APP_RELOAD = os.getenv("APP_RELOAD", "False").lower() == "true"
 
 
+
+
+#All settings related to smtp
+class SMTPSettings:
+    SMTP_HOST = os.getenv("SMTP_HOST")
+    SMTP_PORT = int(os.getenv("SMTP_PORT"))
+    SMTP_USER = os.getenv("SMTP_USER")
+    SMTP_PASS = os.getenv("SMTP_PASS")
+    BACKEND_URL = os.getenv("BACKEND_URL")
+
+
+
 dbsettings = DbSettings()
 appsettings = AppSettings()
+smtpsettings = SMTPSettings()

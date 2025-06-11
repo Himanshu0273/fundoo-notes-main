@@ -5,8 +5,8 @@
       "format": "{level:<6} | {time:YYYY-MM-DD HH:mm:ss} | {name:<20} | {line} | {message}",
       "rotation": "1 MB",
       "compression": "zip",
-      "backtrace": true,
-      "diagnose": true,
+      "backtrace": false,
+      "diagnose": false,
       "level": "INFO",
       "filter": "config"
     },
@@ -15,8 +15,8 @@
       "format": "{level:<6} | {time:YYYY-MM-DD HH:mm:ss} | {name:<20} | {line} | {message}",
       "rotation": "1 MB",
       "compression": "zip",
-      "backtrace": true,
-      "diagnose": true,
+      "backtrace": false,
+      "diagnose": false,
       "level": "INFO",
       "filter": "func"
     }

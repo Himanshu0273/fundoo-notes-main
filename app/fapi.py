@@ -1,8 +1,10 @@
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
+
+from app.config import db_initialize
 from app.config.logger_config import config_logger
 from app.routers import auth, user
-from app.config import db_initialize
 
 # config_logger = logger.bind(func=True)
 
