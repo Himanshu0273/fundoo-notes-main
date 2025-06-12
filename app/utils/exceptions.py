@@ -66,3 +66,20 @@ class RegexValidationException(HTTPException):
             status_code = status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail=f"{field_name} validation error: {error_msg}"
         )
+        
+#Env Exception       
+class RequiredEnvVarError(Exception):
+    # """Non-HTTP exception for environment variables"""
+    def _init_(self, var_name: str):
+        super()._init_(f"Required environment variable '{var_name}' is not set")
+        self.var_name = var_name
+        
+        
+#User not Verified
+class NotVerifiedException(HTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="The user is not verified!!"
+        )
+        

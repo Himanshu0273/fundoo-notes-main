@@ -4,11 +4,11 @@ from jose import JWTError, jwt
 
 from ..schemas import auth_schema
 
-# SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7" #make this a header
+# SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7" 
 
 
 class AccessToken:
-    def __init__(self,secret_key,    algorithm="HS256", time_expire=30):
+    def __init__(self,secret_key, algorithm="HS256", time_expire=30):
         self.algorithm = algorithm
         self.time_expire = time_expire
         self.secret_key = secret_key

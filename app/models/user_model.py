@@ -1,9 +1,9 @@
 import uuid
 from datetime import date, datetime
 
-from sqlalchemy import Date, DateTime
+from sqlalchemy import Boolean, Date
 from sqlalchemy import Enum as SQLAlchemyEnum
-from sqlalchemy import Integer, String
+from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from ..database import Base
@@ -21,6 +21,7 @@ class User(Base):
     created_at: Mapped[datetime] = mapped_column(default=datetime.now)
     gender: Mapped[GenderEnum] = mapped_column(SQLAlchemyEnum(GenderEnum))
     secret_key: Mapped[str] = mapped_column(String(100), nullable=False)
+    is_verfied: Mapped[bool] = mapped_column(Boolean,nullable=False, default=False)
     
     @classmethod
     def create(cls, **kwargs):

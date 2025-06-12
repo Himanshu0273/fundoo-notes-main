@@ -1,0 +1,37 @@
+INFO   | 2025-06-12 12:45:57 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 12:46:02 | app.utils.emails_utils | 32 | Verification email sent to: martingiles@example.net
+INFO   | 2025-06-12 12:46:02 | app.routers.user     | 63 | User created with ID: 1
+INFO   | 2025-06-12 12:46:02 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 12:46:05 | app.utils.emails_utils | 32 | Verification email sent to: donnalawrence@example.org
+INFO   | 2025-06-12 12:46:05 | app.routers.user     | 63 | User created with ID: 2
+INFO   | 2025-06-12 12:47:50 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 12:47:53 | app.utils.emails_utils | 32 | Verification email sent to: williamolson@example.org
+INFO   | 2025-06-12 12:47:53 | app.routers.user     | 63 | User created with ID: 1
+INFO   | 2025-06-12 12:47:53 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 12:47:56 | app.utils.emails_utils | 32 | Verification email sent to: esmith@example.net
+INFO   | 2025-06-12 12:47:56 | app.routers.user     | 63 | User created with ID: 2
+INFO   | 2025-06-12 12:59:56 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 13:00:00 | app.utils.emails_utils | 32 | Verification email sent to: test@gmail.com
+INFO   | 2025-06-12 13:00:00 | app.routers.user     | 63 | User created with ID: 1
+INFO   | 2025-06-12 13:00:00 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 13:00:03 | app.utils.emails_utils | 32 | Verification email sent to: test@gmail.com
+INFO   | 2025-06-12 13:00:03 | app.routers.user     | 63 | User created with ID: 2
+INFO   | 2025-06-12 13:00:47 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 13:00:51 | app.utils.emails_utils | 32 | Verification email sent to: test@gmail.com
+INFO   | 2025-06-12 13:00:51 | app.routers.user     | 63 | User created with ID: 1
+INFO   | 2025-06-12 13:00:51 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 13:00:54 | app.utils.emails_utils | 32 | Verification email sent to: test@gmail.com
+INFO   | 2025-06-12 13:00:54 | app.routers.user     | 63 | User created with ID: 2
+INFO   | 2025-06-12 13:00:54 | app.routers.user     | 31 | POST /signup - Create new User
+ERROR  | 2025-06-12 13:00:54 | app.routers.user     | 36 | Email already exists: test@gmail.com!!
+INFO   | 2025-06-12 13:03:03 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 13:03:06 | app.utils.emails_utils | 32 | Verification email sent to: test@gm.com
+INFO   | 2025-06-12 13:03:06 | app.routers.user     | 63 | User created with ID: 1
+INFO   | 2025-06-12 13:03:31 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 13:03:34 | app.utils.emails_utils | 32 | Verification email sent to: test@gm.com
+INFO   | 2025-06-12 13:03:34 | app.routers.user     | 63 | User created with ID: 1
+INFO   | 2025-06-12 13:03:34 | app.routers.user     | 31 | POST /signup - Create new User
+INFO   | 2025-06-12 13:03:38 | app.utils.emails_utils | 32 | Verification email sent to: test@gm.com
+INFO   | 2025-06-12 13:03:38 | app.routers.user     | 63 | User created with ID: 2
+INFO   | 2025-06-12 13:03:38 | app.routers.user     | 31 | POST /signup - Create new User
+ERROR  | 2025-06-12 13:03:38 | app.routers.user     | 36 | Email already exists: test@gm.com!!

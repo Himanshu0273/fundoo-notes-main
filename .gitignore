@@ -1,5 +1,13 @@
 .venv
+
 .env
+.env.test
+
+alembic.ini
 __pycache__
+
+
 tables.py
 app/logs
+user_logs
+logs

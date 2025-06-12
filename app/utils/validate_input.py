@@ -1,7 +1,10 @@
 import re
 from functools import wraps
+
 from pydantic import ValidationError
+
 from app.utils.exceptions import RegexValidationException
+
 
 def regex_validator(field_name: str, pattern: str, error_msg: str):
     def decorator(func):
