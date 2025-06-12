@@ -5,7 +5,7 @@ from fastapi.responses import HTMLResponse
 from jose import JWTError, jwt
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
- 
+
 from app.auth import token as token_module
 from app.auth.dependencies import get_user_with_headers
 from app.config.logger_config import func_logger

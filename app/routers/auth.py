@@ -7,7 +7,8 @@ from app.auth import token
 from app.config.logger_config import func_logger
 from app.database import get_db
 from app.models import user_model
-from app.utils.exceptions import InvalidCredentialsException, NotVerifiedException
+from app.utils.exceptions import (InvalidCredentialsException,
+                                  NotVerifiedException)
 from app.utils.hash import Hash
 
 auth_router = APIRouter(
