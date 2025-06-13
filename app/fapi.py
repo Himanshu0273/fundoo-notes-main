@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from app.config import db_initialize
 from app.config.logger_config import config_logger
-from app.routers import auth, user, notes
+from app.routers import auth, notes, user
 
 # config_logger = logger.bind(func=True)
 
@@ -20,6 +20,7 @@ async def lifespan(app: FastAPI):
         config_logger.exception(f"❌ Error in the startup stage: {e}")
     yield
     print("🙏 App shutting down...")
+
 
 fapi = FastAPI(lifespan=lifespan)
 

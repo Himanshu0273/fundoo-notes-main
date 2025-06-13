@@ -1,14 +1,13 @@
 import pytest
+from dotenv import load_dotenv
+from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.database import get_db, Base
-from app.fapi import fapi
-from fastapi.testclient import TestClient
-from dotenv import load_dotenv
+
 from app.config.settings import dbsettings
+from app.database import Base, get_db
+from app.fapi import fapi
 from app.models import user_model
-
-
 
 DB_USER = dbsettings.DB_USER
 DB_PASS = dbsettings.DB_PASSWORD
