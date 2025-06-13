@@ -83,3 +83,11 @@ class NotVerifiedException(HTTPException):
             detail="The user is not verified!!"
         )
         
+        
+#Note not found
+class NoteNotFoundException(HTTPException):
+    def __init__(self, note_id: int):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"The note with id: {note_id} was not found!!"
+        )

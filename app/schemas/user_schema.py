@@ -22,7 +22,7 @@ class ShowUser(BaseModel):
     dob: date
     gender: GenderEnum
 
-
+    model_config = ConfigDict(from_attributes=True)
 class UpdateUser(BaseModel):
     username: Optional[str] = None
     email: Optional[str] = None

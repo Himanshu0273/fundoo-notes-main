@@ -32,7 +32,11 @@ def get_current_user(
             raise credentials_exception
 
         tokenobj = AccessToken(user.secret_key, algorithm=algorithm, time_expire=time_expire)
-        return tokenobj.verify_access_token(token_data, credentials_exception)
+        tokenobj.verify_access_token(token_data, credentials_exception)
+        
+        return user
 
     except JWTError:
         raise credentials_exception
+
+    
