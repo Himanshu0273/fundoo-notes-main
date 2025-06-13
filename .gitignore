@@ -9,5 +9,6 @@ __pycache__
 
 tables.py
 app/logs
-user_logs
-logs
+fundoo_notes/user_logs
+fundoo_notes/logs
+fundoo_notes/notes_logs

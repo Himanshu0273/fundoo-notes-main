@@ -16,9 +16,10 @@ async def send_verification_email(to_email: str, verification_link: str):
     message["From"] = SMTP_USER
     message["To"] = to_email
     message["Subject"] = "Verify your Email"
-    message.set_content(f"Click on the given link to verify your email:\n{verification_link}")
-    
-    
+    message.set_content(
+        f"Click on the given link to verify your email:\n{verification_link}"
+    )
+
     try:
         await aiosmtplib.send(
             message,
@@ -26,12 +27,10 @@ async def send_verification_email(to_email: str, verification_link: str):
             port=SMTP_PORT,
             start_tls=True,
             username=SMTP_USER,
-            password=SMTP_PASS
+            password=SMTP_PASS,
         )
-        
+
         func_logger.info(f"Verification email sent to: {to_email}")
-    
+
     except Exception as e:
         func_logger.exception(f"Failed to send verification link to: {to_email}")
-        
-        

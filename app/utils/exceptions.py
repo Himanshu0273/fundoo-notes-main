@@ -1,93 +1,99 @@
 from fastapi import HTTPException, status
 
 
-#No user found
+# No user found
 class UserNotFoundException(HTTPException):
     def __init__(self, user_id: int):
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail= f"No user with ID: {user_id} found!!"
+            detail=f"No user with ID: {user_id} found!!",
         )
-      
-#Invalid Credentials  
+
+
+# Invalid Credentials
 class InvalidCredentialsException(HTTPException):
     def __init__(self):
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid Credentials entered!!",
-            headers={"WWW-Authenticate": "Bearer"}                
+            headers={"WWW-Authenticate": "Bearer"},
         )
-    
-#Email already exists      
+
+
+# Email already exists
 class EmailAlreadyExistsException(HTTPException):
     def __init__(self, email: str):
         super().__init__(
             status_code=status.HTTP_409_CONFLICT,
-            detail=f"The email: {email} already exists!!"
+            detail=f"The email: {email} already exists!!",
         )
-        
-#Username already exists
+
+
+# Username already exists
 class UsernameAlreadyExistsException(HTTPException):
     def __init__(self, username: str):
         super().__init__(
             status_code=status.HTTP_409_CONFLICT,
-            detail=f"The username: {username} already exists!!"
+            detail=f"The username: {username} already exists!!",
         )
-        
-#Unauthorized Access
+
+
+# Unauthorized Access
 class UnauthorizedAccessException(HTTPException):
     def __init__(self):
         super().__init__(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="You do not have permission to perform this action!!"
+            detail="You do not have permission to perform this action!!",
         )
-        
-#Token Invalid
+
+
+# Token Invalid
 class TokenInvalidException(HTTPException):
     def __init__(self):
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token is invalid",
-            headers={"WWW-Authenticate": "Bearer"}
-        )        
+            headers={"WWW-Authenticate": "Bearer"},
+        )
 
-#Token Expired
+
+# Token Expired
 class TokenExpiredException(HTTPException):
     def __init__(self):
         super().__init__(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token has expired"
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Token has expired"
         )
-        
-#Regex Validation
+
+
+# Regex Validation
 class RegexValidationException(HTTPException):
     def __init__(self, field_name: str, error_msg: str):
         super().__init__(
-            status_code = status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail=f"{field_name} validation error: {error_msg}"
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=f"{field_name} validation error: {error_msg}",
         )
-        
-#Env Exception       
+
+
+# Env Exception
 class RequiredEnvVarError(Exception):
     # """Non-HTTP exception for environment variables"""
     def _init_(self, var_name: str):
         super()._init_(f"Required environment variable '{var_name}' is not set")
         self.var_name = var_name
-        
-        
-#User not Verified
+
+
+# User not Verified
 class NotVerifiedException(HTTPException):
     def __init__(self):
         super().__init__(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="The user is not verified!!"
+            status_code=status.HTTP_403_FORBIDDEN, detail="The user is not verified!!"
         )
-        
-        
-#Note not found
+
+
+# Note not found
 class NoteNotFoundException(HTTPException):
     def __init__(self, note_id: int):
         super().__init__(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"The note with id: {note_id} was not found!!"
+            detail=f"The note with id: {note_id} was not found!!",
         )
