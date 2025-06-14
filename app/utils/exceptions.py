@@ -97,3 +97,30 @@ class NoteNotFoundException(HTTPException):
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"The note with id: {note_id} was not found!!",
         )
+
+
+# Label not Owned
+class LabelNotOwnedException(HTTPException):
+    def __init__(self, label_names: list):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"The following labels are not found or do not belong to user: {', '.join(label_names)}",
+        )
+
+
+# No Valid Label
+class NoValidLabelsProvidedException(HTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="At least one valid label (owned by user) is required.",
+        )
+
+
+# Label not found
+class LabelNotFoundException(HTTPException):
+    def __init__(self, label_id: int):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"The label with id: {label_id} was not found!!",
+        )

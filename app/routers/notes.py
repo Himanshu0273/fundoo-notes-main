@@ -4,16 +4,20 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.auth import oauth
-from app.database import get_db
-from app.models import notes_model
-from app.schemas import notes_schema, user_schema
-from app.utils.exceptions import NoteNotFoundException
 from app.config.logger_config import note_func_logger
+from app.database import get_db
+from app.models import label_model, notes_model
+from app.models.notes_model import Notes
+from app.schemas import notes_schema, user_schema
+from app.utils.exceptions import (
+    LabelNotOwnedException,
+    NoteNotFoundException,
+    NoValidLabelsProvidedException,
+)
 
 notes_router = APIRouter(prefix="/note", tags=["Notes"])
 
 
-# Create a note
 @notes_router.post("/", status_code=status.HTTP_201_CREATED)
 def create_note(
     request: notes_schema.Notes,
@@ -21,14 +25,33 @@ def create_note(
     current_user: user_schema.User = Depends(oauth.get_current_user),
 ):
     note_func_logger.info("POST /note - Create new note")
-    new_note = notes_model.Notes(
-        title=request.title, body=request.body, user_id=current_user.id
+
+    label_objs = (
+        db.query(label_model.Label)
+        .filter(
+            label_model.Label.label_name.in_(request.labels),
+            label_model.Label.user_id == current_user.id,
+        )
+        .all()
     )
+
+    if not label_objs:
+        raise NoValidLabelsProvidedException()
+
+    found_label_names = {label.label_name for label in label_objs}
+    missing_labels = [l for l in request.labels if l not in found_label_names]
+    if missing_labels:
+        raise LabelNotOwnedException(label_names=missing_labels)
+
+    new_note = Notes(title=request.title, body=request.body, user_id=current_user.id)
+    new_note.labels = label_objs
+
     db.add(new_note)
     db.commit()
     db.refresh(new_note)
+
     note_func_logger.info("Created!!")
-    
+
     return {
         "message": f"The note with id: {new_note.id} for user with id: {current_user.id} was created!!",
         "payload": new_note,
@@ -49,7 +72,7 @@ def get_all_notes(
         .all()
     )
     note_func_logger.info("Displayed!!")
-    
+
     return {
         "message": f"These are all the notes of the user with user id: {current_user.id}",
         "payload": notes,
@@ -81,6 +104,7 @@ def get_specific_note(
     return {
         "message": f"The note with id: {note.id} for user with id: {current_user.id} is found!",
         "payload": note,
+        "labels": [label.label_name for label in note.labels],
         "status": status.HTTP_200_OK,
     }
 

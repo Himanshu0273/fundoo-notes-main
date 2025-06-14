@@ -20,31 +20,34 @@ TEST_DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_N
 engine = create_engine(TEST_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine)
 
+
 @pytest.fixture(scope="session", autouse=True)
 def setup_db():
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
     yield
     Base.metadata.drop_all(bind=engine)
-    
+
+
 @pytest.fixture(scope="function")
 def db_session():
     conn = engine.connect()
-    transaction=conn.begin()
-    
-    db=TestingSessionLocal(bind=conn)
+    transaction = conn.begin()
+
+    db = TestingSessionLocal(bind=conn)
     try:
         yield db
-        
+
     finally:
         transaction.rollback()
         conn.close()
-    
+
+
 @pytest.fixture(scope="function")
 def client(db_session):
     def override_get_db():
         yield db_session
-        
+
     fapi.dependency_overrides[get_db] = override_get_db
     with TestClient(fapi) as c:
         yield c

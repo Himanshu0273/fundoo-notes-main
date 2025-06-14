@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from app.config import db_initialize
 from app.config.logger_config import config_logger
-from app.routers import auth, notes, user
+from app.routers import auth, labels, notes, user
 
 # config_logger = logger.bind(func=True)
 
@@ -29,3 +29,4 @@ fapi.include_router(user.signup_router)
 fapi.include_router(auth.auth_router)
 fapi.include_router(user.user_router)
 fapi.include_router(notes.notes_router)
+fapi.include_router(labels.label_router)

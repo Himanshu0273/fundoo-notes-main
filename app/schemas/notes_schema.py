@@ -1,14 +1,16 @@
 from datetime import date, datetime
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict
 
+from app.schemas.label_schema import Label
 from app.schemas.user_schema import ShowUser
 
 
 class Notes(BaseModel):
     title: str
     body: str
+    labels: List[str]
     model_config = ConfigDict(from_attributes=True)
 
 
@@ -18,7 +20,7 @@ class ShowNote(BaseModel):
     body: str
     created_at: date
     user: ShowUser
-
+    labels: List[Label]
     model_config = ConfigDict(from_attributes=True)
 
 
