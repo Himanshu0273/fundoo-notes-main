@@ -19,3 +19,5 @@ INFO   | 2025-06-14 18:14:41 | app.routers.notes    | 24 | POST /note - Create n
 INFO   | 2025-06-14 18:15:03 | app.routers.notes    | 24 | POST /note - Create new note
 INFO   | 2025-06-14 18:15:12 | app.routers.notes    | 24 | POST /note - Create new note
 INFO   | 2025-06-14 18:15:12 | app.routers.notes    | 53 | Created!!
+INFO   | 2025-06-14 19:05:26 | app.routers.notes    | 27 | POST /note - Create new note
+INFO   | 2025-06-14 19:05:26 | app.routers.notes    | 53 | Created!!
