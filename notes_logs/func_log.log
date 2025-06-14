@@ -9,4 +9,15 @@ INFO   | 2025-06-13 17:23:54 | app.routers.notes    | 51 | Displayed!!
 INFO   | 2025-06-13 17:24:19 | app.routers.notes    | 23 | POST /note - Create new note
 INFO   | 2025-06-13 17:24:19 | app.routers.notes    | 30 | Created!!
 INFO   | 2025-06-13 17:24:25 | app.routers.notes    | 45 | GET /note - Retrieve all notes of a user
-INFO   | 2025-06-13 17:24:25 | app.routers.notes    | 51 | Displayed!!
+INFO   | 2025-06-13 17:24:25 | app.routers.notes    | 51 | Displayed!!INFO   | 2025-06-14 16:52:09 | app.routers.notes    | 24 | POST /note - Create new note
+INFO   | 2025-06-14 16:52:09 | app.routers.notes    | 53 | Created!!
+INFO   | 2025-06-14 16:53:36 | app.routers.notes    | 67 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-14 16:53:36 | app.routers.notes    | 73 | Displayed!!
+INFO   | 2025-06-14 16:59:29 | app.routers.notes    | 89 | GET /note - Get the note with ID: 5
+INFO   | 2025-06-14 16:59:29 | app.routers.notes    | 102 | Displayed
+INFO   | 2025-06-14 18:14:41 | app.routers.notes    | 24 | POST /note - Create new note
+INFO   | 2025-06-14 18:15:03 | app.routers.notes    | 24 | POST /note - Create new note
+INFO   | 2025-06-14 18:15:12 | app.routers.notes    | 24 | POST /note - Create new note
+INFO   | 2025-06-14 18:15:12 | app.routers.notes    | 53 | Created!!
+INFO   | 2025-06-14 19:05:26 | app.routers.notes    | 27 | POST /note - Create new note
+INFO   | 2025-06-14 19:05:26 | app.routers.notes    | 53 | Created!!

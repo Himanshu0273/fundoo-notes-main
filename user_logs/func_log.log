@@ -22,3 +22,17 @@ INFO   | 2025-06-13 14:06:48 | app.routers.auth     | 20 | POST /login - Authent
 INFO   | 2025-06-13 14:06:49 | app.routers.auth     | 38 | User authenticated successfully!!
 INFO   | 2025-06-13 17:14:05 | app.routers.auth     | 23 | POST /login - Authenticating user
 INFO   | 2025-06-13 17:14:05 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-14 15:24:44 | app.routers.auth     | 23 | POST /login - Authenticating user
+ERROR  | 2025-06-14 15:24:44 | app.routers.auth     | 52 | ❌ Database error during authenticating user!!
+INFO   | 2025-06-14 16:15:10 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-14 16:15:10 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-14 16:51:06 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-14 16:51:06 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-14 17:34:09 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-14 17:34:09 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-14 18:06:46 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-14 18:06:47 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-14 18:48:46 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-14 18:48:47 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-14 19:03:38 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-14 19:03:38 | app.routers.auth     | 47 | User authenticated successfully!!
