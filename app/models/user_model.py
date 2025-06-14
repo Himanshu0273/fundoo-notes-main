@@ -25,6 +25,7 @@ class User(Base):
     is_verfied: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
     notes = relationship("Notes", back_populates="user", cascade="all, delete-orphan")
+    labels = relationship("Label", back_populates="user")
 
     @classmethod
     def create(cls, **kwargs):

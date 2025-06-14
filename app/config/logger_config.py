@@ -14,7 +14,7 @@ class Logger:
 
         def func_filter(record):
             return record.get("extra", {}).get("func", False)
-        
+
         def note_func_filter(record):
             return record.get("extra", {}).get("func1", False)
 
@@ -24,7 +24,11 @@ class Logger:
 
         for handler in config_log["handlers"]:
             filter_name = handler.pop("filter", None)
-            filter_func = {"config": db_filter, "func": func_filter, "func1": note_func_filter}.get(filter_name)
+            filter_func = {
+                "config": db_filter,
+                "func": func_filter,
+                "func1": note_func_filter,
+            }.get(filter_name)
 
             logger.add(**handler, filter=filter_func)
 
