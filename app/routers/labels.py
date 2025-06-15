@@ -11,7 +11,9 @@ from app.utils.exceptions import LabelNotFoundException
 label_router = APIRouter(prefix="/label", tags=["Labels"])
 
 
-@label_router.post("/", status_code=status.HTTP_201_CREATED, response_model=LabelResponse)
+@label_router.post(
+    "/", status_code=status.HTTP_201_CREATED, response_model=LabelResponse
+)
 def create_label(
     request: LabelBase,
     db: Session = Depends(get_db),
@@ -24,7 +26,9 @@ def create_label(
     return new_label
 
 
-@label_router.get("/", status_code=status.HTTP_200_OK, response_model=list[LabelResponse])
+@label_router.get(
+    "/", status_code=status.HTTP_200_OK, response_model=list[LabelResponse]
+)
 def get_all_label(
     db: Session = Depends(get_db),
     current_user: User = Depends(oauth.get_current_user),
@@ -33,14 +37,18 @@ def get_all_label(
     return labels
 
 
-@label_router.put("/{id}", status_code=status.HTTP_202_ACCEPTED, response_model=LabelResponse)
+@label_router.put(
+    "/{id}", status_code=status.HTTP_202_ACCEPTED, response_model=LabelResponse
+)
 def update_label(
     id: int,
     request: UpdateLabel,
     db: Session = Depends(get_db),
     current_user: User = Depends(oauth.get_current_user),
 ):
-    label_query = db.query(LabelModel).filter(LabelModel.id == id, LabelModel.user_id == current_user.id)
+    label_query = db.query(LabelModel).filter(
+        LabelModel.id == id, LabelModel.user_id == current_user.id
+    )
     label_obj = label_query.first()
 
     if not label_obj:
@@ -60,7 +68,9 @@ def delete_label(
     db: Session = Depends(get_db),
     current_user: User = Depends(oauth.get_current_user),
 ):
-    label_query = db.query(LabelModel).filter(LabelModel.id == id, LabelModel.user_id == current_user.id)
+    label_query = db.query(LabelModel).filter(
+        LabelModel.id == id, LabelModel.user_id == current_user.id
+    )
     label_obj = label_query.first()
 
     if not label_obj:
@@ -70,5 +80,5 @@ def delete_label(
     db.commit()
     return {
         "message": f"The label with id: {id} for user with id: {current_user.id} was deleted!",
-        "status": status.HTTP_200_OK
+        "status": status.HTTP_200_OK,
     }

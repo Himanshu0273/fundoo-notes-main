@@ -14,6 +14,7 @@ from app.utils.exceptions import (
     NoteNotFoundException,
     NoValidLabelsProvidedException,
 )
+from datetime import datetime, timezone, timedelta
 
 notes_router = APIRouter(prefix="/note", tags=["Notes"])
 
@@ -161,3 +162,14 @@ def delete_note(
         "payload": note,
         "status": status.HTTP_202_ACCEPTED,
     }
+
+
+#Extend Note Validity
+@notes_router.get("/extend/{note_id}", status_code=status.HTTP_202_ACCEPTED)
+def extend_note(note_id: int, db:Session=Depends(get_db)):
+    note=db.query(Notes).filter(Notes.id == note_id).first()
+    if not note:
+        raise NoteNotFoundException
+    note.expires_at = datetime.now(timezone.utc) + timedelta(days=30)
+    db.commit()
+    return {"msg": "Note expiry extended by 30 days"}

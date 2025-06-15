@@ -7,7 +7,7 @@ class LoginRequest(BaseModel):
     email: EmailStr
     password: str
     algorithm: str = "HS256"
-    time_expire: int = 15
+    time_expire: int = 30
 
 
 class TokenData(BaseModel):

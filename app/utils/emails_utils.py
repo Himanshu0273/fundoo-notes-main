@@ -34,3 +34,27 @@ async def send_verification_email(to_email: str, verification_link: str):
 
     except Exception as e:
         func_logger.exception(f"Failed to send verification link to: {to_email}")
+
+
+async def send_reminder_email(to_email: str, note_id):
+    msg = EmailMessage()
+    msg["from"] = SMTP_USER
+    msg["To"] = to_email
+    msg["Subject"] = "Your note is about to expire"
+    msg.set_content(f"""
+    Your note is expiring soon. Click the link below to extend it:
+    http://localhost:8000/notes/extend/{note_id}
+    """)
+    
+    try:
+        await aiosmtplib.send(
+            msg,
+            hostname=SMTP_HOST,
+            port=SMTP_PORT,
+            username=SMTP_USER,
+            password=SMTP_PASS,
+            start_tls=True
+        )
+        
+    except Exception as e:
+        func_logger.exception(f"Failed to send verification link to: {to_email}")
