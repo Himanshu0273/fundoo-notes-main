@@ -15,6 +15,7 @@ from app.utils.exceptions import (
     NoValidLabelsProvidedException,
 )
 from datetime import datetime, timezone, timedelta
+from app.utils.redis_client import get_cache, set_cache, r
 
 notes_router = APIRouter(prefix="/note", tags=["Notes"])
 
@@ -28,10 +29,10 @@ def create_note(
     note_func_logger.info("POST /note - Create new note")
 
     label_objs = (
-        db.query(label_model.Label)
+        db.query(label_model.NoteLabel)
         .filter(
-            label_model.Label.label_name.in_(request.labels),
-            label_model.Label.user_id == current_user.id,
+            label_model.NoteLabel.label_name.in_(request.labels),
+            label_model.NoteLabel.user_id == current_user.id,
         )
         .all()
     )
@@ -66,6 +67,17 @@ def get_all_notes(
     db: Session = Depends(get_db),
     current_user: user_schema.User = Depends(oauth.get_current_user),
 ):
+    cache_key = f"recent_notes_user_{current_user.id}"
+
+    cached_notes = get_cache(cache_key)
+
+    if cached_notes:
+        return {
+            "message": "Notes from redis cache",
+            "payload": cached_notes,
+            "status_code": status.HTTP_200_OK,
+        }
+        
     note_func_logger.info("GET /note - Retrieve all notes of a user")
     notes = (
         db.query(notes_model.Notes)
@@ -88,6 +100,17 @@ def get_specific_note(
     db: Session = Depends(get_db),
     current_user: user_schema.User = Depends(oauth.get_current_user),
 ):
+    cache_key = f"recent_notes_user_{current_user.id}"
+
+    cached_notes = get_cache(cache_key)
+
+    if cached_notes:
+        return {
+            "message": "Notes from redis cache",
+            "payload": cached_notes,
+            "status_code": status.HTTP_200_OK,
+        }
+    
     note_func_logger.info(f"GET /note - Get the note with ID: {id}")
     note = (
         db.query(notes_model.Notes)
@@ -127,9 +150,11 @@ def update_note(
     if not note.first():
         note_func_logger.error(f"PUT /note - Note with id: {id} not found")
         raise NoteNotFoundException(note_id=id)
-
+    
     updated_data = request.model_dump(exclude_unset=True)
     note.update(updated_data)
+    r.delete(f"note_{id}")
+    r.delete(f"recent_notes_user_{current_user.id}")
     db.commit()
     note_func_logger.info("Updated!!")
     return {
@@ -154,6 +179,8 @@ def delete_note(
         note_func_logger.error(f"DELETE /note - Note with id: {id} not found")
         raise NoteNotFoundException(note_id=id)
 
+    r.delete(f"note_{id}")
+    r.delete(f"recent_notes_user_{current_user.id}")    
     note.delete(synchronize_session=False)
     db.commit()
     note_func_logger.info("Deleted!!")

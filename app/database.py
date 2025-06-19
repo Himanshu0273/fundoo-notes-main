@@ -3,7 +3,6 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 from app.config.settings import dbsettings
 
-# from enums import GenderEnum
 
 DB_USER = dbsettings.DB_USER
 DB_PASSWORD = dbsettings.DB_PASSWORD

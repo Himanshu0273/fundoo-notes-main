@@ -3,7 +3,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict
 
-from app.schemas.label_schema import Label
+from app.schemas.label_schema import NoteLabel
 from app.schemas.user_schema import ShowUser
 
 
@@ -20,7 +20,7 @@ class ShowNote(BaseModel):
     body: str
     created_at: date
     user: ShowUser
-    labels: List[Label]
+    labels: List[NoteLabel]
     model_config = ConfigDict(from_attributes=True)
 
 

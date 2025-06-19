@@ -3,10 +3,10 @@ from sqlalchemy.orm import Session
 
 from app.auth import oauth
 from app.database import get_db
-from app.models.label_model import Label as LabelModel
-from app.schemas.label_schema import Label as LabelResponse, LabelBase, UpdateLabel
+from app.models.label_model import NoteLabel as LabelModel
+from app.schemas.label_schema import NoteLabel as LabelResponse, LabelBase, UpdateLabel
 from app.schemas.user_schema import User
-from app.utils.exceptions import LabelNotFoundException
+from app.utils.exceptions import LabelNotFoundException, LabelAlreadyExistsException
 
 label_router = APIRouter(prefix="/label", tags=["Labels"])
 
@@ -19,6 +19,10 @@ def create_label(
     db: Session = Depends(get_db),
     current_user: User = Depends(oauth.get_current_user),
 ):
+    label = db.query(LabelModel).filter(LabelModel.label_name == request.label_name, LabelModel.user_id==current_user.id).first()
+    if label:
+        raise LabelAlreadyExistsException(label_name=label.label_name)
+        
     new_label = LabelModel(label_name=request.label_name, user_id=current_user.id)
     db.add(new_label)
     db.commit()

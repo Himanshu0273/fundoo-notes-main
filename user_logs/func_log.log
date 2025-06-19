@@ -38,3 +38,7 @@ INFO   | 2025-06-14 19:03:38 | app.routers.auth     | 23 | POST /login - Authent
 INFO   | 2025-06-14 19:03:38 | app.routers.auth     | 47 | User authenticated successfully!!
 INFO   | 2025-06-15 18:54:26 | app.routers.auth     | 23 | POST /login - Authenticating user
 INFO   | 2025-06-15 18:54:26 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-17 10:39:45 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-17 10:39:46 | app.routers.auth     | 47 | User authenticated successfully!!
+INFO   | 2025-06-17 12:56:32 | app.routers.auth     | 23 | POST /login - Authenticating user
+INFO   | 2025-06-17 12:56:32 | app.routers.auth     | 47 | User authenticated successfully!!

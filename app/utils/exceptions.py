@@ -99,7 +99,7 @@ class NoteNotFoundException(HTTPException):
         )
 
 
-# Label not Owned
+# NoteLabel not Owned
 class LabelNotOwnedException(HTTPException):
     def __init__(self, label_names: list):
         super().__init__(
@@ -108,7 +108,7 @@ class LabelNotOwnedException(HTTPException):
         )
 
 
-# No Valid Label
+# No Valid NoteLabel
 class NoValidLabelsProvidedException(HTTPException):
     def __init__(self):
         super().__init__(
@@ -117,10 +117,30 @@ class NoValidLabelsProvidedException(HTTPException):
         )
 
 
-# Label not found
+# NoteLabel not found
 class LabelNotFoundException(HTTPException):
     def __init__(self, label_id: int):
         super().__init__(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"The label with id: {label_id} was not found!!",
+        )
+
+
+#NoteLabel already exists
+class LabelAlreadyExistsException(HTTPException):
+    def __init__(self, label_name: str):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"The label with name: '{label_name}' already exists for this user!!"
+        )
+        
+        
+#Too Many Requests to the API
+class TooManyRequestsException(HTTPException):
+    def __init__(self):
+        super().__init__(
+            HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"Too many requests, Try after some time",
+            )
         )

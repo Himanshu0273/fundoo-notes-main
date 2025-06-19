@@ -7,7 +7,7 @@ class LabelBase(BaseModel):
     label_name: str
 
 
-class Label(LabelBase):
+class NoteLabel(LabelBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
 

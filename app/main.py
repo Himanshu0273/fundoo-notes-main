@@ -2,12 +2,10 @@ import sys
 
 import uvicorn
 
-from app.config.logger_config import Logger
 from app.config.settings import appsettings
 from app.utils.exceptions import RequiredEnvVarError
 
 if __name__ == "__main__":
-    # logger = Logger.initialize_from_json()
     try:
         uvicorn.run(
             "app.fapi:fapi",

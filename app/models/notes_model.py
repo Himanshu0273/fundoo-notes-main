@@ -1,4 +1,5 @@
 from datetime import datetime, timezone, timedelta
+from typing import TYPE_CHECKING, List
 
 from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -6,6 +7,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 from app.models.associations import note_label_association
 
+from app.models.label_model import NoteLabel
+if TYPE_CHECKING:
+    from app.models.user_model import User
 
 class Notes(Base):
     __tablename__ = "notes"
@@ -18,7 +22,8 @@ class Notes(Base):
     is_expired: Mapped[Boolean] = mapped_column(DateTime,default=False)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"))
 
-    user = relationship("User", back_populates="notes")
-    labels = relationship(
-        "Label", secondary=note_label_association, back_populates="notes"
+    labels: Mapped[List["NoteLabel"]] = relationship(
+        NoteLabel, secondary=note_label_association, back_populates="notes"
     )
+    user: Mapped["User"] = relationship("User", back_populates="notes")
+

@@ -4,12 +4,15 @@ from app.models.notes_model import Notes
 from app.models.user_model import User
 from datetime import datetime, timedelta, timezone
 from app.utils.emails_utils import send_reminder_email
+from app.config.logger_config import func_logger
 
 @celery_app.task
 def check_and_notify_expiring_notes():
+    func_logger.info(f"Check if note is expiring function started!!")
+    
     db = SessionLocal()
     now = datetime.now(timezone.utc)
-    reminder_window = now + timedelta(days=2)
+    reminder_window = now + timedelta(minutes=1)
     notes = db.query(Notes).filter(
         Notes.expires_at <= reminder_window,
         Notes.expires_at > now,
@@ -19,6 +22,7 @@ def check_and_notify_expiring_notes():
     for note in notes:
         user = db.query(User).filter(User.id == note.user_id).first()
         if user:
+            func_logger.info(f"User Email: {user.email} Fetched!!")
             send_reminder_email(user.email, note.id)
     db.close()
 

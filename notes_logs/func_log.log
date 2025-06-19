@@ -23,3 +23,77 @@ INFO   | 2025-06-14 19:05:26 | app.routers.notes    | 27 | POST /note - Create n
 INFO   | 2025-06-14 19:05:26 | app.routers.notes    | 53 | Created!!
 INFO   | 2025-06-15 18:56:23 | app.routers.notes    | 28 | POST /note - Create new note
 INFO   | 2025-06-15 18:56:23 | app.routers.notes    | 54 | Created!!
+INFO   | 2025-06-17 10:43:11 | app.routers.notes    | 29 | POST /note - Create new note
+INFO   | 2025-06-17 10:43:11 | app.routers.notes    | 55 | Created!!
+INFO   | 2025-06-17 10:43:26 | app.routers.notes    | 29 | POST /note - Create new note
+INFO   | 2025-06-17 10:43:26 | app.routers.notes    | 55 | Created!!
+INFO   | 2025-06-17 10:43:40 | app.routers.notes    | 29 | POST /note - Create new note
+INFO   | 2025-06-17 10:43:40 | app.routers.notes    | 55 | Created!!
+INFO   | 2025-06-17 10:43:51 | app.routers.notes    | 29 | POST /note - Create new note
+INFO   | 2025-06-17 10:43:51 | app.routers.notes    | 55 | Created!!
+INFO   | 2025-06-17 11:06:03 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:03 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:53 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:53 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:54 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:54 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:55 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:55 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:55 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:55 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:56 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:56 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:57 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:57 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:57 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:57 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:58 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:58 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:59 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:59 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:06:59 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:06:59 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:00 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:00 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:00 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:00 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:01 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:01 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:02 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:02 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:02 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:02 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:03 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:03 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:03 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:03 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:04 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:04 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:05 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:05 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:06 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:06 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:07:09 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:07:09 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:33 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:33 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:36 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:36 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:37 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:37 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:37 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:37 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:38 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:38 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:38 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:38 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:39 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:39 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:39 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:39 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:39 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:39 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 11:09:40 | app.routers.notes    | 81 | GET /note - Retrieve all notes of a user
+INFO   | 2025-06-17 11:09:40 | app.routers.notes    | 87 | Displayed!!
+INFO   | 2025-06-17 12:57:11 | app.routers.notes    | 29 | POST /note - Create new note
+INFO   | 2025-06-17 12:57:11 | app.routers.notes    | 55 | Created!!
